@@ -1,78 +1,82 @@
 import { simpleCalculator, Action } from './index';
 
+// It's a pity that this type cannot be imported from the 'index.ts' file.
 type RawCalculatorInput = {
   a: unknown;
   b: unknown;
   action: unknown;
 };
 
+const getRandomNumber = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const getRandomInvalid = (): unknown => {
+  const invalidValues = [
+    'string',
+    null,
+    undefined,
+    true,
+    false,
+    [],
+    {},
+    () => NaN,
+    Symbol('sym'),
+    // NaN,
+  ];
+  return invalidValues[Math.floor(Math.random() * invalidValues.length)];
+};
+
+const getRandomInput = (
+  action: unknown,
+  invalidArg = false,
+): RawCalculatorInput => {
+  return {
+    a: invalidArg ? getRandomInvalid() : getRandomNumber(-100, 100),
+    b: invalidArg ? getRandomInvalid() : getRandomNumber(-100, 100),
+    action: action,
+  };
+};
+
 describe('simpleCalculator tests', () => {
   test('should add two numbers', () => {
-    const input: RawCalculatorInput = {
-      a: 1,
-      b: 2,
-      action: Action.Add,
-    };
+    const input = getRandomInput(Action.Add);
     const result = simpleCalculator(input);
-    expect(result).toBe(3);
+    expect(result).toBe(Number(input.a) + Number(input.b));
   });
 
   test('should subtract two numbers', () => {
-    const input: RawCalculatorInput = {
-      a: 9,
-      b: 5,
-      action: Action.Subtract,
-    };
+    const input = getRandomInput(Action.Subtract);
     const result = simpleCalculator(input);
-    expect(result).toBe(4);
+    expect(result).toBe(Number(input.a) - Number(input.b));
   });
 
   test('should multiply two numbers', () => {
-    const input: RawCalculatorInput = {
-      a: 2,
-      b: 2,
-      action: Action.Multiply,
-    };
+    const input = getRandomInput(Action.Multiply);
     const result = simpleCalculator(input);
-    expect(result).toBe(4);
+    expect(result).toBe(Number(input.a) * Number(input.b));
   });
 
   test('should divide two numbers', () => {
-    const input: RawCalculatorInput = {
-      a: 9,
-      b: 3,
-      action: Action.Divide,
-    };
+    const input = getRandomInput(Action.Divide);
     const result = simpleCalculator(input);
-    expect(result).toBe(3);
+    expect(result).toBe(Number(input.a) / Number(input.b));
   });
 
   test('should exponentiate two numbers', () => {
-    const input: RawCalculatorInput = {
-      a: 2,
-      b: 3,
-      action: Action.Exponentiate,
-    };
+    const input = getRandomInput(Action.Exponentiate);
     const result = simpleCalculator(input);
-    expect(result).toBe(8);
+    expect(result).toBe(Number(input.a) ** Number(input.b));
   });
 
   test('should return null for invalid action', () => {
-    const input: RawCalculatorInput = {
-      a: 1,
-      b: 3,
-      action: 'invalid',
-    };
+    const input = getRandomInput(getRandomInvalid());
     const result = simpleCalculator(input);
     expect(result).toBeNull();
   });
 
   test('should return null for invalid arguments', () => {
-    const input: RawCalculatorInput = {
-      a: 'invalid',
-      b: 1,
-      action: Action.Add,
-    };
+    const input = getRandomInput(Action.Add, true);
     const result = simpleCalculator(input);
     expect(result).toBeNull();
   });
