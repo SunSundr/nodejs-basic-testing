@@ -12,6 +12,14 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "jest --silent",
     "test:verbose": "jest",
+    "test:01-simple-tests": "jest src/01-simple-tests/index.test.ts",
+    "test:02-table-tests": "jest src/02-table-tests/index.test.ts",
+    "test:03-error-handling-async": "jest src/03-error-handling-async/index.test.ts",
+    "test:04-test-class": "jest src/04-test-class/index.test.ts",
+    "test:05-partial-mocking": "jest src/05-partial-mocking/index.test.ts",
+    "test:06-mocking-node-api": "jest src/06-mocking-node-api/index.test.ts",
+    "test:07-mocking-lib-api": "jest src/07-mocking-lib-api/index.test.ts",
+    "test:08-snapshot-testing": "jest src/08-snapshot-testing/index.test.ts",
     "build": "tsc"
   },
   "devDependencies": {
