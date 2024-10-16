@@ -1,3 +1,4 @@
+import { random } from 'lodash';
 import { simpleCalculator, Action } from './index';
 
 // It's a pity that this type cannot be imported from the 'index.ts' file.
@@ -8,7 +9,7 @@ type RawCalculatorInput = {
 };
 
 const getRandomNumber = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return random(min, max, false);
 };
 
 const getRandomInvalid = (): unknown => {

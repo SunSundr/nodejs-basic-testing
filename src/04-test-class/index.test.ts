@@ -1,3 +1,4 @@
+import { random } from 'lodash';
 import {
   getBankAccount,
   InsufficientFundsError,
@@ -6,7 +7,7 @@ import {
 } from './index';
 
 const getRandomNumber = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return random(min, max, false);
 };
 
 describe('BankAccount', () => {
