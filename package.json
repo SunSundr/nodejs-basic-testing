@@ -19,6 +19,7 @@
     "test:05-partial-mocking": "jest src/05-partial-mocking/index.test.ts",
     "test:06-mocking-node-api": "jest src/06-mocking-node-api/index.test.ts",
     "test:07-mocking-lib-api": "jest src/07-mocking-lib-api/index.test.ts",
+    "test:07-mocking-lib-api-2": "jest src/07-mocking-lib-api/index.spec.ts",
     "test:08-snapshot-testing": "jest src/08-snapshot-testing/index.test.ts",
     "build": "tsc"
   },

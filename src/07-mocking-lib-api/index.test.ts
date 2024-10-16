@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { throttledGetDataFromApi, THROTTLE_TIME } from './index';
 
+// VARIANT 1 (with `useFakeTimers`)
+// ---------------------------------
+
 jest.mock('axios');
 
 describe('throttledGetDataFromApi', () => {
