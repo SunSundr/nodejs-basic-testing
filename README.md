@@ -1,106 +1,70 @@
 # Basic testing
 
-⚠️ DO NOT SUBMIT PULL REQUESTS TO THIS REPO ⚠️
+This repository contains examples of various test scenarios implemented using Jest.
 
----
-
-### Prerequisites
-1. Install [Node.js](https://nodejs.org/en/download/)   
-2. Fork this repository: https://github.com/AlreadyBored/basic-testing
-3. Clone your newly created repo locally: https://github.com/<%your_github_username%>/basic-testing/  
-4. Go to folder `basic-testing`  
-5. To install all dependencies use [`npm install`](https://docs.npmjs.com/cli/install)  
-6. Run **test scripts** in command line.
-7. You will see the number of skipped, passing and failing tests.
-
----
-
-### Test scripts
-
-```bash
-# run unit tests
-$ npm run test
-
-# with logging
-$ npm run test:verbose
-```
-
----
-
-#### Notes
-1. We recommend you to use Node.js of version 20.x.x LTS. If you use any of features, that does not supported by Node.js 20, there may be problems with task submit.
-2. Please, be sure that each of your tests is limited to 30 sec.
-
----
-
-## General task description
-Your task is to write unit tests for code, provided in file `index.ts`. 
-
----
-
-### **Simple tests**
-
-Write unit tests for the `simpleCalculator` function, which performs basic mathematical operations - addition, subtraction, division, multiplication, and exponentiation. Your task is to verify that the operations are executed correctly and that the function returns `null` for invalid input.
-
-Write your tests in `src/01-simple-tests/index.test.ts`.
-
----
-
-### **Table tests**
-
-Your task is to rewrite the tests written in the previous task using the table-driven testing approach, utilizing the appropriate Jest API.
-
-Write your tests in `src/02-table-tests/index.test.ts`.
-
----
-
-
-### **Error handling & async**
-
-Your task is to test functions that work asynchronously/throw/reject exceptions..
-
-Write your tests in `src/03-error-handling-async/index.test.ts`.
-
----
-
-### **Testing class**
-
-Your task is to test a class representing a bank account that implements corresponding operations. Please note that some methods of the class invoke others, some operations result in errors, and the implementation is asynchronous and involves the native JS API. These aspects should be taken into account when writing the tests.
-
-Write your tests in `src/04-test-class/index.test.ts`.
-
----
-
-### **Partial mocking**
-
-Your task is to utilize the Jest API to partially mock the contents of a module.
-
-Write your tests in `src/05-partial-mocking/index.test.ts`.
-
----
-
-### **Mocking Node.js API**
-
-Your task is to test the proper usage of the Node.js API based on commonly used APIs such as the `fs` module, as well as `setTimeout` and `setInterval`. Remember that the tests should not interact with the actual file system and should not rely on real-time!
-
-Write your tests in `src/06-mocking-node-api/index.test.ts`.
-
----
-
-### **Mocking library API**
-
-Your task is to test that function that utilize library APIs is working correctly (with commonly used libraries such as `axios` and `lodash` as examples).
-
-Write your tests in `src/07-mocking-lib-api/index.test.ts`.
-
----
-
-### **Snapshot testing**
-
-Your task is to use snapshot testing with Jest and compare it to regular comparison testing.
-
-Write your tests in `src/08-snapshot-testing/index.test.ts`.
-
----
-
+The project was completed as part of the [RS School](https://rs.school/) [NodeJS 2024 Q3 course (Basic testing)](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/basic-testing/assignment.md).
 © [AlreadyBored](https://github.com/AlreadyBored)
+
+---
+
+## Project Setup
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/SunSundr/nodejs-basic-testing
+```
+2. **Navigate to the project directory:**
+```bash
+cd nodejs-basic-testing
+```
+3. **Install the dependencies:**
+```bash
+npm ci
+```
+---
+
+## 1. Simple Tests
+
+Unit tests for a `simpleCalculator` function that performs basic mathematical operations: addition, subtraction, division, multiplication, and exponentiation. Two variations are provided:
+
+*   **VARIANT 1 (simple):** Tests using predefined values.
+*   **VARIANT 2 (with random):** Each test run generates unique random values for greater coverage and robustness.
+
+## 2. Table Tests
+
+Tests for the `simpleCalculator` function, performing the same basic mathematical operations as in #1, but using a table-driven approach (data-driven testing) with the Jest API. This method facilitates concise and easily maintainable tests with varying inputs and expected outputs.
+
+## 3. Error Handling & Async
+
+Examples of testing functions that operate asynchronously and functions that throw or reject errors. Demonstrates how to test asynchronous behavior and error cases using Jest's API for promises and async/await.
+
+## 4. Testing Class
+
+An example of testing a class representing a bank account. The class implements various methods, some of which call other methods, some may result in errors, and some operations are asynchronous and use their own JS API.  This section shows how to test methods with internal dependencies, error conditions, and asynchronous operations in a class context.
+
+## 5. Partial Mocking
+
+Illustrates how to use Jest's API for partially mocking the contents of a module.  This is useful for isolating specific parts of a module and controlling their behavior during testing, without mocking the entire module.
+
+## 6. Mocking Node.js API
+
+Demonstrates how to test code that uses common Node.js APIs such as the `fs` module, `setTimeout`, and `setInterval`. The tests mock these APIs to ensure they do not interact with the real file system or rely on real time, making the tests fast and predictable.
+
+## 7. Mocking Library API
+
+Examples of testing a function that uses library APIs (specifically, `axios` and `lodash`). Two variations are provided:
+
+*   **VARIANT 1 (with mock `throttle`):** Uses Jest mocks to control the behavior of the `throttle` function from lodash during the test.
+*   **VARIANT 2 (with `useFakeTimers`):** Leverages Jest's `useFakeTimers` to manipulate the timer behavior, which is used internally by throttle API, allowing fine-grained control over time-sensitive asynchronous code.
+
+## 8. Snapshot Testing
+
+An example of using snapshot testing with Jest to capture and compare the output of a component or function. This is contrasted with traditional comparative testing, highlighting the strengths and use cases of snapshot testing for regression detection.
+
+---
+
+## Technical Details
+ - For ease of testing, use pre-implemented npm-scripts in `package.json`.
+ - Some tests are presented in two versions:
+`*.test files` - original solution
+`*.spec files` - alternative solution
